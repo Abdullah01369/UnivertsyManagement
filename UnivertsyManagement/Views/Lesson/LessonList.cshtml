@@ -1,0 +1,41 @@
+﻿@using UnivertsyManagement.Models.Concrete
+@model List<Student_Lesson>
+@{
+    ViewBag.Title = "LessonList";
+    Layout = "~/Views/Shared/StudentLayout.cshtml";
+}
+
+<h2>Ders Listesi</h2>
+<br />
+<br />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col"><i class="fas fa-hashtag"></i></th>
+            <th scope="col"><i class="fas fa-code"></i> DERS KODU</th>
+            <th scope="col"><i class="fas fa-book"></i> DERS ADI</th>
+            <th scope="col"><i class="fas fa-file-alt"></i> Vize</th>
+            <th scope="col"><i class="fas fa-check"></i> Vize Durumu</th>
+            <th scope="col"><i class="fas fa-file-alt"></i> Final</th>
+            <th scope="col"><i class="fas fa-check"></i> Final Durumu</th>
+            <th scope="col"><i class="fas fa-file-alt"></i> Büt</th>
+            <th scope="col"><i class="fas fa-check"></i> Büt Durumu</th>
+            <th scope="col"><i class="fas fa-certificate"></i> Büt Hakkı</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row"></th>
+                <td>@item.Lesson.Lesson_Code.ToUpper()</td>
+                <td>@item.Lesson.Name</td>
+              
+            </tr>
+
+        }
+
+    </tbody>
+
+</table>

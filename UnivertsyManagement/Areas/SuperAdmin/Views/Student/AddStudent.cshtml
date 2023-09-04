@@ -1,0 +1,246 @@
+﻿@using UnivertsyManagement.Areas.SuperAdmin.Data
+@model StudentAddViewModel
+@{
+    ViewBag.Title = "AddStudent";
+    Layout = "~/Areas/SuperAdmin/Views/Shared/SuperAdminLayout.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#faculty").change(function () {
+            var facultyId = $(this).val();
+            fetchDepartments(facultyId);
+
+        });
+    });
+
+    function fetchDepartments(facultyId) {
+        debugger;
+        var departmentSelect = $("#department");
+        departmentSelect.empty();
+
+
+        $.ajax({
+            type: "GET",
+            url: "/SuperAdmin/Student/DepartmentListByFacultyId",
+            data: { facultyId: facultyId },
+
+            success: function (data) {
+                debugger;
+                $.each(data, function (index, department) {
+                    departmentSelect.append(new Option(department.DepartmentName, department.DepartmentID));
+                });
+
+            },
+            error: function () {
+                alert("Bölüm bilgileri alınırken bir hata oluştu.");
+            }
+        });
+    }
+</script>
+<style>
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form-control {
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<link href="~/Content/loadersty.css" rel="stylesheet" />
+<br />
+
+<br />
+<div id="loader" class="loader"></div>
+
+<div class="container mt-lg">
+    <h2 class="text-center mb-4">Öğrenci Kayıt Formu</h2>
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="firstName">Ad</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="lastName">Soyad</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">E-posta</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Şifre</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="city">Şehir</label>
+                <select class="form-control" id="city" name="city" required>
+                    <option value="" disabled selected>Şehir Seçin</option>
+
+                    @foreach (var item in Model.City)
+                    {
+                        <option value="@item.CityID">@item.CityName</option>
+
+                    }
+
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="gender">Cinsiyet</label>
+                <select class="form-control" id="gender" name="gender" required>
+                    <option value="" disabled selected>Cinsiyet Seçin</option>
+                    @foreach (var item in Model.Genders)
+                    {
+                        <option value="@item.GenderID">@item.Code</option>
+                    }
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="address">Adres</label>
+            <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="birthDate">Doğum Tarihi</label>
+            <input type="date" class="form-control" id="birthDate" name="birthDate" required>
+        </div>
+        <div class="form-group">
+            <label for="tc">TC Kimlik Numarası</label>
+            <input type="text" class="form-control" id="tc" name="tc" maxlength="11" required>
+        </div>
+        <div class="form-group">
+            <label for="profilePhoto">Profil Fotoğrafı</label>
+            <input type="file" class="form-control-file" accept="image/png, image/gif, image/jpeg" id="fileInput" name="fileInput">
+        </div>
+        <div class="form-group">
+            <label for="entryScore">Okula Giriş Derecesi</label>
+            <input type="number" class="form-control" id="entryScore" name="entryScore" step="1" required>
+        </div>
+        <div class="form-group">
+            <label for="class">Sınıf Seçin</label>
+            <select class="form-control" id="class" name="class" required>
+                <option value="" disabled selected>Sınıf Seçin</option>
+                @foreach (var item in Model.Sinifs)
+                {
+                    <option value="@item.SinifID">@item.Level. Sınıf</option>
+                }
+
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="faculty">Fakülte Seçin</label>
+            <select class="form-control" id="faculty" name="faculty" required>
+                <option value="" disabled selected>Fakülte Seçin</option>
+                @foreach (var item in Model.Faculties)
+                {
+                    <option value="@item.FacultyId">@item.Faculty_Name</option>
+                }
+
+            </select>
+        </div>
+        <div class="form-group">
+
+            <label for="department">Bölüm Seç:</label>
+            <select class="form-control" id="department" required>
+                <option value="" disabled selected>Bölüm Seçin</option>
+
+            </select>
+        </div>
+        <button type="button" onclick="AddStudent()" class="btn btn-primary">Kayıt Ol</button>
+    </form>
+</div>
+
+<script>
+    function AddStudent() {
+        $("#loader").show();
+        var student = new FormData();
+
+        student.append("Name", $("#firstName").val());
+        student.append("Surname", $("#lastName").val());
+        student.append("Password", $("#password").val());
+        student.append("E_Mail", $("#email").val());
+        student.append("GenderID", $("#gender").val());
+        student.append("DepartmentID", $("#department").val());
+        student.append("SinifID", $("#class").val());
+        student.append("Address", $("#address").val());
+        student.append("CityID", $("#city").val());
+        student.append("Birthdate", $("#birthDate").val());
+        student.append("TC", $("#tc").val());
+        student.append("Degree", $("#entryScore").val());
+
+        // Get the file input element
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+        debugger;
+        // Check if a file is selected
+        if (file) {
+            student.append("Image", file);
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/SuperAdmin/Student/StudentAdd",
+            data: student,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                if (data == 1 || data == "1") {
+                    $("#loader").hide();
+                    alert("kayıt başarılı");
+                    window.location.href = "/SuperAdmin/Student/Index";
+
+
+                }
+                else {
+                    $("#loader").hide();
+
+                    alert("İşlem Başarısız");
+
+                }
+            },
+            error: function () {
+                $("#loader").hide();
+
+                alert("Hata");
+            }
+        });
+    }
+    $(document).ready(function () {
+
+        $("#loader").hide(); // Sayfa yüklendiğinde loaderı gizle
+
+
+
+    });
+</script>
+
+

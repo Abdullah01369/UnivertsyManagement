@@ -1,0 +1,221 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/SuperAdmin/Views/Shared/SuperAdminLayout.cshtml";
+}
+
+<style>
+    .page-title {
+        text-align: center;
+        margin-bottom: 20px;
+        font-family: 'Microsoft New Tai Lue';
+        padding-top: 20px;
+    }
+
+    .inner {
+        padding: 30px !important;
+    }
+</style>
+<div class="page-title">
+    <h1>ÖĞRENCİ İŞLEMLERİ</h1>
+</div>
+<div style="padding-top:6rem" class="container-fluid">
+    <div class="container-fluid">
+        <!-- Info boxes -->
+        <div style="padding-bottom:30px" class="row">
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Aktif Öğrenci</span>
+                        <span class="info-box-number">
+                            450
+                            <small></small>
+                        </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Yeni Kayıt</span>
+                        <span class="info-box-number">10</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <!-- fix for small devices only -->
+            <div class="clearfix hidden-md-up"></div>
+
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Sales</span>
+                        <span class="info-box-number">760</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Toplam Mezun</span>
+                        <span class="info-box-number">2,000</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+        </div>
+       
+   
+    <div style="margin-bottom:40px;" class="row">
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div href="/SuperAdmin/Student/AddStudent" class="inner">
+                    <h3>Öğrenci Kayıt</h3>
+
+                    <p> </p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+
+                </div>
+                <a href="/SuperAdmin/Student/AddStudent" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+                <div href="/SuperAdmin/Student/EditStudent" class="inner">
+                    <h3>Öğrenci Düzenle</h3>
+
+                    <p> </p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-user-edit"></i>
+                </div>
+                <a href="/SuperAdmin/Student/EditStudent" class="small-box-footer"> <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div href="/SuperAdmin/Student/StatuStudent" class="small-box bg-gradient-secondary">
+                <div class="inner">
+                    <h3>Öğrenci Durum </h3>
+
+
+                    <p> </p>
+
+                </div>
+                <div class="icon">
+                    <i class="fas fa-edit"></i>
+                </div>
+                <a href="/SuperAdmin/Student/StatuStudent" class="small-box-footer"> <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div href="/SuperAdmin/Student/ListStudent" class="small-box bg-danger">
+                <div class="inner">
+                    <h3>Öğrenci Listesi</h3>
+
+                    <p></p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-list"></i>
+                </div>
+                <a href="/SuperAdmin/Student/ListStudent" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div href="/SuperAdmin/Student/SearchStudent" class="small-box bg-gradient-fuchsia">
+                <div class="inner">
+                    <h3>Öğrenci Ara</h3>
+
+                    <p> </p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-search"></i>
+                </div>
+                <a href="/SuperAdmin/Student/SearchStudent" class="small-box-footer"> <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div href="/SuperAdmin/Student/BillStudent" class="small-box bg-gradient-teal">
+                <div class="inner">
+                    <h3>Harç İşlemleri</h3>
+
+                    <p> </p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-money-bill"></i>
+                </div>
+                <a href="/SuperAdmin/Student/BillStudent" class="small-box-footer"> <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div href="/SuperAdmin/Student/LessonStudent" class="small-box bg-gradient-indigo">
+                <div class="inner">
+                    <h3>Öğrenci Ders İşlemi</h3>
+
+
+                    <p> </p>
+
+                </div>
+                <div class="icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <a href="/SuperAdmin/Student/LessonStudent" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-gradient-olive">
+                <div class="inner">
+                    <h3>İşlem ---</h3>
+
+                    <p> </p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                </div>
+                <a href="#" class="small-box-footer"><i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+
+
+
+
+</div>

@@ -1,0 +1,81 @@
+﻿@model UnivertsyManagement.Models.Concrete.Student
+
+@{
+    ViewBag.Title = "EditStudent";
+    Layout = "~/Views/Shared/StudentLayout.cshtml";
+}
+
+<h2>Bilgi Düzenle</h2>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Güncelleme Ekranı</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+
+                <form>
+                    <div class="form-group">
+                        <label for="email">E-posta</label>
+                        <input value="@Model.E_Mail" type="email" class="form-control" id="email" placeholder="E-posta adresinizi girin">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Şifre</label>
+                        <input  value="@Model.Password" type="password" class="form-control" id="password" placeholder="Şifrenizi girin">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Adres</label>
+                        <textarea class="form-control" id="address" placeholder="Adresinizi girin">@Model.Address</textarea>
+                    </div>
+
+                    <button type="button" onclick="EditStudent()" class="btn btn-primary">Güncelle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<script>
+    function EditStudent() {
+        var student = {
+            Password: $("#password").val(),
+            E_Mail: $("#email").val(),
+            Address: $("#address").val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/Student/EditStudentService",
+            data: JSON.stringify(student), // Veriyi JSON formatına çevirin
+            contentType: "application/json",
+            processData: false,
+
+            success: function (data) {
+                debugger;
+                if (data == 1 || data == "1") {
+                    alert("Güncelleme başarılı");
+                    window.location.href = "/Student/Index";
+                } else {
+                    alert("İşlem Başarısız");
+                    debugger;
+                }
+            },
+            error: function () {
+                alert("Hata");
+            }
+        });
+    }
+</script>
+

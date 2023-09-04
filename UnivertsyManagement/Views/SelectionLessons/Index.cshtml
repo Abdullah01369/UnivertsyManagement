@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/StudentLayout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .section {
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .combo-section {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .combo-label {
+            margin-right: 10px;
+        }
+
+        .custom-select {
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 8px;
+            width: 100%;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+            .custom-select:focus {
+                border-color: #80bdff;
+                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            }
+
+        .split-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+            .split-section > div {
+                flex-basis: 48%;
+                padding: 10px;
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+    </style>
+    <title>Örnek Sayfa</title>
+</head>
+<body>
+    <div class="container section">
+        <div class="row">
+            <div class="col-md-12">
+                <p>Paragraf 1</p>
+                <p>Paragraf 2</p>
+                <h3>Başlık 1</h3>
+                <h3>Başlık 2</h3>
+            </div>
+        </div>
+        <div class="row combo-section">
+            <div class="col-md-4 combo-label">Ders Tipi:</div>
+            <div class="col-md-4 combo-label">Ders Durumu:</div>
+            <div class="col-md-4 combo-label">Sınıf:</div>
+            <div class="col-md-4">
+                <select class="form-control custom-select">
+                    <option>Seçenek 1</option>
+                    <option>Seçenek 2</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <select class="form-control custom-select">
+                    <option>Aktif</option>
+                    <option>Pasif</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <select class="form-control custom-select">
+                    <option>Sınıf 1</option>
+                    <option>Sınıf 2</option>
+                </select>
+            </div>
+        </div>
+        <div class="split-section mt-3">
+            <div>
+                <h2>Seçilen Dersler</h2>
+                <!-- Seçilen derslerin listesi buraya eklenebilir -->
+            </div>
+            <div>
+                <h2>Ders Listesi</h2>
+                <!-- Tüm derslerin listesi buraya eklenebilir -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

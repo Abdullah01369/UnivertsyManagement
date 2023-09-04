@@ -1,0 +1,14 @@
+﻿@using UnivertsyManagement.Models.ViewModels
+@model LayoutSidebarViewModel
+
+
+<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    <div class="image">
+        <img src="~/Content/AdminLTE-3.0.4/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+    </div>
+    <div class="info">
+        <a href="#" class="d-block">@Model.Name.ToUpper() @Model.Surname.ToUpper()</a>
+        <a href="#" class="d-block"> GANO: @Model.Gano</a>
+        <a href="#" class="d-block">BÖLÜM: @Model.Depatment</a>
+    </div>
+</div>

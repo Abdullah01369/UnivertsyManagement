@@ -1,0 +1,165 @@
+﻿
+@using UnivertsyManagement.Models.ViewModels
+@model  LessonListViewModel
+@{
+    ViewBag.Title = "LessonList";
+    Layout = "~/Views/Shared/StudentLayout.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<h2>Ders Listesi</h2>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <select id="year" class="form-control">
+
+            @foreach (var item in Model.AcademicYears)
+            {
+                <option value="@item.YearOfEducation">@item.YearOfEducation</option>
+            }
+
+
+
+        </select>
+    </div>
+    <div class="col-md-4">
+        <select id="period" class="form-control">
+
+            @foreach (var item in Model.AcademicYears)
+            {
+                <option value="@item.Period">@item.Period.ToUpper()</option>
+            }
+
+        </select>
+    </div>
+    <div class="col-md-4">
+        <button class="btn btn-primary" onclick='ListLesson()'>List Lessons</button>
+    </div>
+</div>
+<br />
+<table id="lessonTable" class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col"><i class="fas fa-hashtag"></i></th>
+            <th scope="col"><i class="fas fa-code"></i> DERS KODU</th>
+            <th scope="col"><i class="fas fa-book"></i> DERS ADI</th>
+            <th scope="col"><i class="fas fa-file-alt"></i> Vize</th>
+            <th scope="col"><i class="fas fa-file-alt"></i> Vize A.T.</th>
+            <th scope="col"><i class="fas fa-check"></i> Vize Durumu</th>
+            <th scope="col"><i class="fas fa-file-alt"></i> Final</th>
+            <th scope="col"><i class="fas fa-file-alt"></i> Final A.T.</th>
+            <th scope="col"><i class="fas fa-check"></i> Final Durumu</th>
+            <th scope="col"><i class="fas fa-file-alt"></i> Büt</th>
+            <th scope="col"><i class="fas fa-file-alt"></i> Büt A.T.</th>
+            <th scope="col"><i class="fas fa-check"></i> Büt Durumu</th>
+            <th scope="col"><i class="fas fa-certificate"></i> Büt Hakkı</th>
+            <th scope="col"><i class="fas fa-font"></i> Harf</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Exams)
+        {
+
+            <tr>
+                <th scope="row"></th>
+                <td>@item.Lesson.Lesson_Code.ToUpper()</td>
+                <td>@item.Lesson.Name</td>
+                <td>@item.MidtermExam_Score</td>
+                <td>@item.ExamDateDeclareMidterm.ToShortDateString()</td>
+                @if (item.IsTakenMidterm == true)
+                {
+                    <td>Girildi</td>
+                }
+                else
+                {
+                    <td>Girilmedi/Açılanmadı</td>
+                }
+                <td>@item.FinalExam_Score</td>
+                <td>@item.ExamDateDeclareFinal.ToShortDateString()</td>
+                @if (item.IsTakenFinal == true)
+                {
+                    <td>Girildi</td>
+                }
+                else
+                {
+                    <td>Girilmedi/Açılanmadı</td>
+                }
+                <td>@item.ButExam_Score</td>
+                <td>@item.ExamDateDeclareBut.ToShortDateString()</td>
+                @if (item.IsTakenBut == true)
+                {
+                    <td>Girildi</td>
+                }
+                else
+                {
+                    <td>Girilmedi/Açılanmadı</td>
+                }
+
+                <td>@item.CanTakeBut</td>
+                <td>@item.FlagAbc.Flag</td>
+
+            </tr>
+
+        }
+
+    </tbody>
+
+</table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function ListLesson() {
+        var year = $("#year").val();
+        var period = $("#period").val();
+
+        var requestData = {
+            period: period,
+            year: year
+        };
+
+        $.ajax({
+            type: "GET",
+            url: "/Lesson/ListofLessonByParameters",
+            data: requestData,
+       
+            success: function (response) {
+                debugger;
+                var tbody = $("#lessonTable tbody");
+                tbody.empty();
+                debugger;
+                for (var i = 0; i < response.length; i++) {
+                    var item = response[i];
+                    debugger;
+                    var newRow = $("<tr></tr>");
+                    newRow.append("<th scope='row'>" + (i + 1) + "</th>");
+                    newRow.append("<td>" + item.LessonCode + "</td>");
+                    newRow.append("<td>" + item.LessonName + "</td>");
+                    newRow.append("<td>" + item.MidtermExam_Score + "</td>");
+                    newRow.append("<td>" + item.datemid + "</td>");
+                    newRow.append("<td>" + (item.IsTakenMidterm ? "Girildi" : "Girilmedi/Açılanmadı") + "</td>");
+                    newRow.append("<td>" + item.FinalExam_Score + "</td>");
+                    newRow.append("<td>" + item.datefinal + "</td>");
+                    newRow.append("<td>" + (item.IsTakenFinal ? "Girildi" : "Girilmedi/Açılanmadı") + "</td>");
+                    newRow.append("<td>" + item.ButExam_Score + "</td>");
+                    newRow.append("<td>" + item.datebut + "</td>");
+                    newRow.append("<td>" + (item.IsTakenBut ? "Girildi" : "Girilmedi/Açılanmadı") + "</td>");
+                    newRow.append("<td>" + item.CanTakeBut + "</td>");
+                    newRow.append("<td>" + item.Flagabc + "</td>");
+
+                    tbody.append(newRow);
+                }
+            },
+            error: function () {
+                alert("AJAX isteği sırasında bir hata oluştu.");
+            }
+        });
+    }
+</script>
+
+
+
+
+
+
