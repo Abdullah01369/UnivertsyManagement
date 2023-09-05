@@ -2193,6 +2193,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Erciyes_University_logo.png" />
     <Content Include="Content\loadersty.css" />
     <Content Include="Content\weblogin\css\font-awesome.css" />
     <Content Include="Content\weblogin\css\popup-box.css" />
@@ -2481,6 +2482,7 @@
     <Content Include="Areas\SuperAdmin\Views\Student\AddStudent.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\Student\SearchStudent.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\Student\EditStudent.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Student\PartialStudentDetail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

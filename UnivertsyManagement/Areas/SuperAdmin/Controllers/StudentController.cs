@@ -137,7 +137,7 @@ namespace UnivertsyManagement.Areas.SuperAdmin.Controllers
 
                 else
                 {
-                    return Json("-1",JsonRequestBehavior.AllowGet);
+                    return Json("-1", JsonRequestBehavior.AllowGet);
                 }
 
             }
@@ -151,23 +151,23 @@ namespace UnivertsyManagement.Areas.SuperAdmin.Controllers
                     {
                         var ListViewModel = list.Select(d => new StudentListViewModel
                         {
-                            Student_No=d.Student_No,
-                             TC=d.TC,
-                              Address=d.Address,
-                               CityName=d.City.CityName,
-                                Birthdate=d.Birthdate,
-                                 Degree=d.Degree,
-                                  DepartmentName=d.Department.NameDepartment,
-                                   E_Mail=d.E_Mail,
-                                    GANO=d.GANO,
-                                     Gender=d.Gender.Code,
-                                      Graduation_Status=d.Graduation_Status,
-                                       IsActive=d.IsActive,
-                                        Name=d.Name,
-                                         SinifLevel=d.Sinif.Level,
-                                          Surname=d.Surname,
-                                           Photo= Base64ToImage(d.PhotoBase64Text)
-                                         
+                            Student_No = d.Student_No,
+                            TC = d.TC,
+                            Address = d.Address,
+                            CityName = d.City.CityName,
+                            Birthdate = d.Birthdate,
+                            Degree = d.Degree,
+                            DepartmentName = d.Department.NameDepartment,
+                            E_Mail = d.E_Mail,
+                            GANO = d.GANO,
+                            Gender = d.Gender.Code,
+                            Graduation_Status = d.Graduation_Status,
+                            IsActive = d.IsActive,
+                            Name = d.Name,
+                            SinifLevel = d.Sinif.Level,
+                            Surname = d.Surname,
+                            Photo = Base64ToImage(d.PhotoBase64Text)
+
 
 
 
@@ -201,11 +201,18 @@ namespace UnivertsyManagement.Areas.SuperAdmin.Controllers
 
         }
 
-        
+        [HttpPost]
+        public PartialViewResult SearchStudentDetail(string StudentNum)
+        {
+            var student = studentRepo.FindStudentWithNo(StudentNum);
+
+            return PartialView("PartialStudentDetail",student);
+
+        }
 
         public Image Base64ToImage(string base64)
         {
-            if (base64!=null)
+            if (base64 != null)
             {
                 try
                 {
@@ -228,7 +235,7 @@ namespace UnivertsyManagement.Areas.SuperAdmin.Controllers
                 }
             }
             return null;
-           
+
         }
     }
 }

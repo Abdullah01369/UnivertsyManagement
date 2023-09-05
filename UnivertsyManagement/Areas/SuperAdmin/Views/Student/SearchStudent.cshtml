@@ -9,6 +9,17 @@
 <link href="~/Content/loadersty.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
+
+<style>
+    .user-info {
+        padding: 20px;
+    }
+
+        .user-info img {
+            max-width: 100%;
+            height: auto;
+        }
+</style>
 <script>
 
     $(document).ready(function () {
@@ -105,9 +116,31 @@
          
     </table>
 
-    <div id="loader" class="loader"></div>
+    <div id="loader" class="loader"></div> 
 
+</div> 
+
+
+
+
+<div id="studentModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div  class="modal-header">
+                <h4 style="text-align:center" class="modal-title">DETAY</h4>
+            </div>
+            <div class="modal-body user-info">
+                <div id="studentDetailContent">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 <script>
     function SearchStudent() {
@@ -115,17 +148,20 @@
 
         if ($("#department").val() == "N" && $("#studentnum").val() == "") {
             alert("Bölüm ya da Öğrenci Numarası boş bırakılamaz");
+            $("#loader").hide();
             return;
         }
 
         if ($("#department").val() == null && $("#studentnum").val() == "") {
             alert("Bölüm ya da Öğrenci Numarası boş bırakılamaz");
+            $("#loader").hide();
             return;
         }
 
         if (!$("#studentnum").val() == "" && $("#studentnum").val().length != 10) {
             alert("Öğrenci Numarası 10 karakterden oluşmak zorundadır.");
             $("#studentnum").val() == "";
+            $("#loader").hide();
             return;
 
         }
@@ -145,15 +181,15 @@
             success: function (data) {
                 var tableBody = $("#tblstudent tbody");
                 debugger;
-                if (data == "-1" || data==-1) {
+                if (data == "-1" || data == -1) {
                     alert("Öğrenci Numarasına Göre Veri Bulunamadı...");
                     tableBody.empty();
 
                     return;
                 }
-                
+
                 tableBody.empty();
-               
+
                 if (data && data.length > 0) {
                     var tableBody = $("#tblstudent tbody");
                     tableBody.empty();
@@ -162,7 +198,7 @@
                         var row = "<tr>" +
                             "<td>" + student.Student_No + "</td>" +
                             "<td>" + student.Name + "</td>" +
-                            "<td>" + student.Surname + "</td>" +
+                            "<td>" + student.Surname + "</td>" + 
                             "<td>" + student.Gender + "</td>" +
                             "<td>" + student.Birthdate + "</td>" +
                             "<td>" + student.CityName + "</td>" +
@@ -181,6 +217,7 @@
                     });
                 }
                 else {
+                    $("#loader").hide();
                     alert("KAYIT BULUNAMADI");
                 }
                 debugger;
@@ -188,19 +225,20 @@
             },
             error: function () {
                 debugger;
+                $("#loader").hide();
                 alert("Hata");
             }
         });
     }
 
     $(document).ready(function () {
-      
-            $("#loader").hide(); // Sayfa yüklendiğinde loaderı gizle
 
-          
+        $("#loader").hide(); // Sayfa yüklendiğinde loaderı gizle
 
-        });
-   
+
+
+    });
+
 
     function validateStudentNum(input) {
         var studentNum = input.value;
@@ -212,74 +250,31 @@
             errorSpan.textContent = "";
         }
     }
-   
-      function DetailStudent(input) {
+
+    function DetailStudent(input) {
         $("#loader").show();
+        var StudentNum = input;
 
-     
-
-        var searchModel = {
-            FacultyID: $("#faculty").val(),
-            DepartmentID: $("#department").val(),
-            StudentNum: $("#studentnum").val()
-        };
-        debugger;
         $.ajax({
-
-            type: "GET",
-            dataType: "json",
-            url: "/SuperAdmin/Student/SearchStudentWithParameters",
-            data: searchModel,
+            type: "POST",
+            dataType: "html",
+            url: "/SuperAdmin/Student/SearchStudentDetail",
+            data: { StudentNum: StudentNum },
             success: function (data) {
-                var tableBody = $("#tblstudent tbody");
                 debugger;
-                if (data == "-1" || data==-1) {
-                    alert("Öğrenci Numarasına Göre Veri Bulunamadı...");
-                    tableBody.empty();
+                $("#studentDetailContent").html(data);
+                $("#loader").hide();
+                $("#studentModal").modal("show");
 
-                    return;
-                }
-                
-                tableBody.empty();
-               
-                if (data && data.length > 0) {
-                    var tableBody = $("#tblstudent tbody");
-                    tableBody.empty();
-
-                    data.forEach(function (student) {
-                        var row = "<tr>" +
-                            "<td>" + student.Student_No + "</td>" +
-                            "<td>" + student.Name + "</td>" +
-                            "<td>" + student.Surname + "</td>" +
-                            "<td>" + student.Gender + "</td>" +
-                            "<td>" + student.Birthdate + "</td>" +
-                            "<td>" + student.CityName + "</td>" +
-                            "<td>" + student.E_Mail + "</td>" +
-                            "<td>" + student.DepartmentName + "</td>" +
-
-
-                            "<td>" + student.SinifLevel + "</td>" +
-                            "<td><button onclick='DetailStudent(" + student.Student_No + ")' class='btn btn-success'>Detay</button></td>" +
-
-                            "</tr>";
-
-                        tableBody.append(row);
-                        $("#loader").hide(); // İşlem tamamlandığında loaderı gizle
-
-                    });
-                }
-                else {
-                    alert("KAYIT BULUNAMADI");
-                }
-                debugger;
-
-            },
+            }, 
             error: function () {
                 debugger;
+                $("#loader").hide();
                 alert("Hata");
             }
         });
     }
+
 </script>
 
 
