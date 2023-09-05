@@ -17,6 +17,10 @@ namespace UnivertsyManagement.Areas.SuperAdmin.Controllers
         StudentRepo studentRepo = new StudentRepo();
         public ActionResult Index()
         {
+            ViewBag.activestudent = studentRepo.InfosAdminStudent()[0];
+            ViewBag.gradstudent = studentRepo.InfosAdminStudent()[1];
+            ViewBag.newaddedstudent = studentRepo.InfosAdminStudent()[2];
+            ViewBag.sumstudent = studentRepo.InfosAdminStudent()[3];
             return View();
         }
 
@@ -206,7 +210,7 @@ namespace UnivertsyManagement.Areas.SuperAdmin.Controllers
         {
             var student = studentRepo.FindStudentWithNo(StudentNum);
 
-            return PartialView("PartialStudentDetail",student);
+            return PartialView("PartialStudentDetail", student);
 
         }
 

@@ -18,6 +18,21 @@ namespace UnivertsyManagement.Areas.SuperAdmin.Repository
 
         }
 
+        public string[] InfosAdminStudent()
+        {
+            string[] liste = new string[4];
+
+            liste[0] = context.students.Where(x => x.Graduation_Status == false).Count().ToString(); // aktif ogrenci
+            liste[1] = context.students.Where(x => x.Graduation_Status == true).Count().ToString(); // mezun ogrenci
+            liste[2] = context.students.Where(x => x.Sinif.Level == "1").Count().ToString(); // yeni kayıt ogrenci
+            liste[3] = context.students.Count().ToString(); //toplam
+
+            return liste;
+
+
+
+
+        }
 
         public string AddStudent(Student student)
         {

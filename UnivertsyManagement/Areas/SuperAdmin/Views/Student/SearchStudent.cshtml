@@ -182,7 +182,9 @@
                 var tableBody = $("#tblstudent tbody");
                 debugger;
                 if (data == "-1" || data == -1) {
+                    $("#loader").hide();
                     alert("Öğrenci Numarasına Göre Veri Bulunamadı...");
+                    $("#loader").hide();
                     tableBody.empty();
 
                     return;

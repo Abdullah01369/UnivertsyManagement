@@ -30,7 +30,7 @@
                     <div class="info-box-content">
                         <span class="info-box-text">Aktif Öğrenci</span>
                         <span class="info-box-number">
-                            450
+                            @ViewBag.activestudent
                             <small></small>
                         </span>
                     </div>
@@ -45,7 +45,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Yeni Kayıt</span>
-                        <span class="info-box-number">10</span>
+                        <span class="info-box-number"> @ViewBag.newaddedstudent</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -60,8 +60,8 @@
                     <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
                     <div class="info-box-content">
-                        <span class="info-box-text">Sales</span>
-                        <span class="info-box-number">760</span>
+                        <span class="info-box-text">Mezun</span>
+                        <span class="info-box-number">@ViewBag.gradstudent</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -73,8 +73,8 @@
                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
                     <div class="info-box-content">
-                        <span class="info-box-text">Toplam Mezun</span>
-                        <span class="info-box-number">2,000</span>
+                        <span class="info-box-text">Toplam</span>
+                        <span class="info-box-number">@ViewBag.sumstudent</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
