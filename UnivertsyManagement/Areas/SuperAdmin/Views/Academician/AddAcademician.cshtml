@@ -1,0 +1,231 @@
+﻿@using UnivertsyManagement.Areas.SuperAdmin.Data
+@model AcademicianAddModelView
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/SuperAdmin/Views/Shared/SuperAdminLayout.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#faculty").change(function () {
+            var facultyId = $(this).val();
+            fetchDepartments(facultyId);
+
+        });
+    });
+
+    function fetchDepartments(facultyId) {
+        debugger;
+        var departmentSelect = $("#department");
+        departmentSelect.empty();
+
+
+        $.ajax({
+            type: "GET",
+            url: "/SuperAdmin/Student/DepartmentListByFacultyId",
+            data: { facultyId: facultyId },
+
+            success: function (data) {
+                debugger;
+                $.each(data, function (index, department) {
+                    departmentSelect.append(new Option(department.DepartmentName, department.DepartmentID));
+                });
+
+            },
+            error: function () {
+                alert("Bölüm bilgileri alınırken bir hata oluştu.");
+            }
+        });
+    }
+</script>
+<style>
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form-control {
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<link href="~/Content/loadersty.css" rel="stylesheet" />
+<br />
+
+<br />
+<div id="loader" class="loader"></div>
+
+<div class="container mt-lg">
+    <h2 class="text-center mb-4">Akademisyen Kayıt Formu</h2>
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="firstName">Ad</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="lastName">Soyad</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">E-posta</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Şifre</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group col-md-6">
+                <label for="gender">Cinsiyet</label>
+                <select class="form-control" id="gender" name="gender" required>
+                    <option value="" disabled selected>Cinsiyet Seçin</option>
+                    @foreach (var item in Model.Genders)
+                    {
+                        <option value="@item.GenderID">@item.Code</option>
+                    }
+
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group col-md-6">
+                <label for="gender">Unvan</label>
+                <select class="form-control" id="title" name="title" required>
+                    <option value="" disabled selected>Unvan Seçin</option>
+                    @foreach (var item in Model.Titles)
+                    {
+                        <option value="@item.TitleId">@item.Name</option>
+                    }
+
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="birthDate">Doğum Tarihi</label>
+            <input type="date" class="form-control" id="birthDate" name="birthDate" required>
+        </div>
+        <div class="form-group">
+            <label for="tc">TC Kimlik Numarası</label>
+            <input type="text" class="form-control" id="tc" name="tc" maxlength="11" required>
+        </div>
+        <div class="form-group">
+            <label for="profilePhoto">Profil Fotoğrafı</label>
+            <input type="file" class="form-control-file" accept="image/png, image/gif, image/jpeg" id="fileInput" name="fileInput">
+        </div>
+
+
+        <div class="form-group">
+            <label for="faculty">Fakülte Seçin</label>
+            <select class="form-control" id="faculty" name="faculty" required>
+                <option value="" disabled selected>Fakülte Seçin</option>
+                @foreach (var item in Model.Faculties)
+                {
+                    <option value="@item.FacultyId">@item.Faculty_Name</option>
+                }
+
+            </select>
+        </div>
+        <div class="form-group">
+
+            <label for="department">Bölüm Seç:</label>
+            <select class="form-control" id="department" required>
+                <option value="" disabled selected>Bölüm Seçin</option>
+
+            </select>
+        </div>
+        <button type="button" onclick="Add()" class="btn btn-primary">Kayıt</button>
+    </form>
+</div>
+
+<script>
+    function Add() {
+        $("#loader").show();
+        var academician = new FormData();
+
+        academician.append("Name", $("#firstName").val());
+        academician.append("Surname", $("#lastName").val());
+        academician.append("Password", $("#password").val());
+        academician.append("E_Mail", $("#email").val());
+        academician.append("GenderID", $("#gender").val());
+        academician.append("DepartmentID", $("#department").val());
+        academician.append("Birthdate", $("#birthDate").val());
+        academician.append("TC", $("#tc").val());
+        academician.append("TitleId", $("#title").val());
+
+        debugger;
+        // Get the file input element
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+        debugger;
+        // Check if a file is selected
+        if (file) {
+            academician.append("Image", file);
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/SuperAdmin/Academician/AcademicianAdd",
+            data: academician,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                if (data == 1 || data == "1") {
+                    $("#loader").hide();
+                    alert("kayıt başarılı");
+                    window.location.href = "/SuperAdmin/Academician/Index";
+
+
+                }
+                else {
+                    $("#loader").hide();
+
+                    alert("İşlem Başarısız");
+
+                }
+            },
+            error: function () {
+                $("#loader").hide();
+
+                alert("Hata");
+            }
+        });
+    }
+    $(document).ready(function () {
+
+        $("#loader").hide(); // Sayfa yüklendiğinde loaderı gizle
+
+
+
+    });
+</script>
+
+

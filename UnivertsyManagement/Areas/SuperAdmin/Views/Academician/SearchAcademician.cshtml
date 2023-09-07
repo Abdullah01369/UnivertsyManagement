@@ -1,0 +1,249 @@
+﻿
+@using UnivertsyManagement.Models.Concrete
+@model List<Faculty>
+@{
+    ViewBag.Title = "";
+    Layout = "~/Areas/SuperAdmin/Views/Shared/SuperAdminLayout.cshtml";
+}
+
+<link href="~/Content/loadersty.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
+<style>
+    .user-info {
+        padding: 20px;
+    }
+
+        .user-info img {
+            max-width: 100%;
+            height: auto;
+        }
+</style>
+<script>
+
+    $(document).ready(function () {
+        $("#faculty").change(function () {
+            $("#loader").hide(); // Sayfa yüklendiğinde loaderı gizle
+
+            var facultyId = $(this).val();
+            fetchDepartments(facultyId);
+
+        });
+    });
+
+    function fetchDepartments(facultyId) {
+        debugger;
+
+        var departmentSelect = $("#department");
+        departmentSelect.empty();
+        if (facultyId == "N") {
+            return;
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "/SuperAdmin/Student/DepartmentListByFacultyId",
+            data: { facultyId: facultyId },
+
+            success: function (data) {
+                debugger;
+                $.each(data, function (index, department) {
+                    departmentSelect.append(new Option(department.DepartmentName, department.DepartmentID));
+                });
+
+            },
+            error: function () {
+                alert("Bölüm bilgileri alınırken bir hata oluştu.");
+            }
+        });
+    }
+</script>
+
+<div style="padding-top:3rem" class="row">
+    <div class="col">
+        <select class="form-control" id="faculty" name="faculty" required>
+            <option value="N" selected>Fakülte Seçin</option>
+            @foreach (var item in Model)
+            {
+                <option value="@item.FacultyId">@item.Faculty_Name</option>
+            }
+
+        </select>
+
+    </div>
+    <div class="col">
+        <select class="form-control" id="department" required>
+            <option value="N" selected>Bölüm Seçin</option>
+
+        </select>
+
+    </div>
+  
+    <div class="col">
+        <button onclick="SearchAcademician()" class="btn btn-success">Ara</button>
+    </div>
+</div>
+
+<br />
+<br />
+
+<div id="tablediv">
+    <table id="tblstudent" class="table table-striped">
+        <thead>
+            <tr>
+
+
+                <th scope="col"><i class="fas fa-book"></i>  Ad</th>
+                <th scope="col"><i class="fas fa-file-alt"></i> Soyadı</th>
+                <th scope="col"><i class="fas fa-file-alt"></i> Bölüm</th>
+                <th scope="col"><i class="fas fa-file-alt"></i>Cinsiyet</th>
+                <th scope="col"><i class="fas fa-check"></i>Doğum Tarih</th>
+                <th scope="col"><i class="fas fa-file-alt"></i> Unvan</th>
+                <th scope="col"><i class="fas fa-file-alt"></i> Mail</th>
+                <th scope="col"><i class="fas fa-file-alt"></i> DETAY</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+
+    </table>
+
+    <div id="loader" class="loader"></div>
+
+</div>
+
+
+
+
+<div id="studentModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 style="text-align:center" class="modal-title">DETAY</h4>
+            </div>
+            <div class="modal-body user-info">
+                <div id="studentDetailContent">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function SearchAcademician() {
+        $("#loader").show();
+
+       
+        if ($("#department").val() == null && $("#studentnum").val() == "") {
+            alert("Bölüm bırakılamaz");
+            $("#loader").hide();
+            return;
+        }
+
+      
+
+        var searchModel = {
+            FacultyID: $("#faculty").val(),
+            DepartmentID: $("#department").val(),
+           
+        };
+        debugger;
+        $.ajax({
+
+            type: "GET",
+            dataType: "json",
+            url: "/SuperAdmin/Academician/SearchAcademicianWithParameters",
+            data: searchModel,
+            success: function (data) {
+                var tableBody = $("#tblstudent tbody");
+           
+              
+
+                tableBody.empty();
+
+                if (data && data.length > 0) {
+                    var tableBody = $("#tblstudent tbody");
+                    tableBody.empty();
+
+                    data.forEach(function (academician) {
+                        var row = "<tr>" +
+                         
+                            "<td>" + academician.Name + "</td>" +
+                            "<td>" + academician.Surname + "</td>" +
+                            "<td>" + academician.Department + "</td>" +
+                            "<td>" + academician.Gender + "</td>" +
+                            "<td>" + academician.Birthdate + "</td>" +
+                            "<td>" + academician.Title + "</td>" +
+                            "<td>" + academician.AcademicianMail + "</td>" +
+  
+                            "<td><button onclick='DetailAcademician(" + academician.Id + ")' class='btn btn-success'>Detay</button></td>" +
+
+                            "</tr>";
+
+                        tableBody.append(row);
+                        $("#loader").hide(); 
+
+                    });
+                }
+                else {
+                    $("#loader").hide();
+                    alert("KAYIT BULUNAMADI");
+                }
+                debugger;
+
+            },
+            error: function () {
+                debugger;
+                $("#loader").hide();
+                alert("Hata");
+            }
+        });
+    }
+
+    $(document).ready(function () {
+
+        $("#loader").hide(); 
+
+
+
+    });
+
+
+
+
+    function DetailAcademician(input) {
+        $("#loader").show();
+        var id = input;
+
+        $.ajax({
+            type: "POST",
+            dataType: "html",
+            url: "/SuperAdmin/Academician/SearchAcademicianDetail",
+            data: { id: id },
+            success: function (data) {
+                debugger;
+                $("#studentDetailContent").html(data);
+                $("#loader").hide();
+                $("#studentModal").modal("show");
+
+            },
+            error: function () {
+                debugger;
+                $("#loader").hide();
+                alert("Hata");
+            }
+        });
+    }
+
+</script>
+
+
+

@@ -16,6 +16,8 @@ namespace UnivertsyManagement.Models.Concrete
         public string Surname { get; set; }
         public string TC { get; set; }
 
+        public int? GenderID { get; set; }
+        public virtual Gender Gender { get; set; }
 
         public int? TitleId { get; set; }
       
@@ -26,6 +28,9 @@ namespace UnivertsyManagement.Models.Concrete
 
         public string AcademicianMail { get; set; }
         public string AcademicianPassword { get; set; }
+        public string Birthdate { get; set; }
+
+        public string ImageString { get; set; }
 
         public int? DepartmentID { get; set; }
         public virtual Department Department { get; set; }

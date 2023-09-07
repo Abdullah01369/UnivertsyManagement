@@ -1,0 +1,23 @@
+﻿@using UnivertsyManagement.Models.Concrete
+@model Academician
+
+<div class="row">
+
+    <div class="col-md-8">
+
+        <p><strong>Ad Soyad:</strong>  @Model.Name @Model.Surname</p>
+    
+
+        <p><strong>Doğum Tarihi:</strong> @Model.Birthdate.ToShortDateString()</p>
+        <p><strong>Cinsiyet:</strong> @Model.Gender.Code</p>
+        <p><strong>Unvan:</strong> @Model.Title.Name</p>
+        <p><strong>Bölüm:</strong> @Model.Department.NameDepartment </p>
+      
+
+
+
+    </div>
+    <div class="col-md-4">
+        <img src="https://via.placeholder.com/150" alt="Kullanıcı Fotoğrafı" class="img-fluid">
+    </div>
+</div>

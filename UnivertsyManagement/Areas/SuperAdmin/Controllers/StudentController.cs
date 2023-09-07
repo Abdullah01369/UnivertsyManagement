@@ -24,7 +24,7 @@ namespace UnivertsyManagement.Areas.SuperAdmin.Controllers
             return View();
         }
 
-        // veri atarken viewmodel kullan
+        
         public ActionResult AddStudent()
         {
             StudentAddViewModel studentAddViewModel = new StudentAddViewModel();

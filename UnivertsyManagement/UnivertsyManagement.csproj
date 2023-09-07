@@ -283,11 +283,16 @@
     <Compile Include="Areas\SuperAdmin\Controllers\ExamController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\LessonController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\StudentController.cs" />
+    <Compile Include="Areas\SuperAdmin\Data\AcademicianAddingModel.cs" />
+    <Compile Include="Areas\SuperAdmin\Data\AcademicianAddModelView.cs" />
+    <Compile Include="Areas\SuperAdmin\Data\AcademicianSearchModel.cs" />
+    <Compile Include="Areas\SuperAdmin\Data\AcademicianSearchViewModel.cs" />
     <Compile Include="Areas\SuperAdmin\Data\AddingStudentViewModel.cs" />
     <Compile Include="Areas\SuperAdmin\Data\DepartmentViewModel.cs" />
     <Compile Include="Areas\SuperAdmin\Data\StudentAddViewModel.cs" />
     <Compile Include="Areas\SuperAdmin\Data\StudentListViewModel.cs" />
     <Compile Include="Areas\SuperAdmin\Data\StudentSearchModel.cs" />
+    <Compile Include="Areas\SuperAdmin\Repository\AcademicianRepo.cs" />
     <Compile Include="Areas\SuperAdmin\Repository\ExamRepo.cs" />
     <Compile Include="Areas\SuperAdmin\Repository\LessonRepo.cs" />
     <Compile Include="Areas\SuperAdmin\Repository\StudentRepo.cs" />
@@ -324,6 +329,10 @@
     <Compile Include="Migrations\202308192334483_bn.cs" />
     <Compile Include="Migrations\202308192334483_bn.designer.cs">
       <DependentUpon>202308192334483_bn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202309051920001_academician_prop.cs" />
+    <Compile Include="Migrations\202309051920001_academician_prop.designer.cs">
+      <DependentUpon>202309051920001_academician_prop.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Concrete\Academician.cs" />
@@ -2483,6 +2492,10 @@
     <Content Include="Areas\SuperAdmin\Views\Student\SearchStudent.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\Student\EditStudent.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\Student\PartialStudentDetail.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Academician\Index.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Academician\AddAcademician.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Academician\SearchAcademician.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Academician\AcademicianDetailsPartial.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2519,7 +2532,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\SuperAdmin\Models\" />
-    <Folder Include="Areas\SuperAdmin\Views\Academician\" />
     <Folder Include="Areas\SuperAdmin\Views\AcademicYear\" />
     <Folder Include="Areas\SuperAdmin\Views\Exam\" />
     <Folder Include="Views\Login\" />
@@ -2567,6 +2579,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202308192334483_bn.resx">
       <DependentUpon>202308192334483_bn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309051920001_academician_prop.resx">
+      <DependentUpon>202309051920001_academician_prop.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

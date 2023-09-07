@@ -13,6 +13,7 @@ namespace UnivertsyManagement.Models.Concrete
         public string Code { get; set; }
 
         public virtual ICollection<Student> Students { get; set; }
+        public virtual ICollection<Academician> Academicians { get; set; }
 
     }
 }
