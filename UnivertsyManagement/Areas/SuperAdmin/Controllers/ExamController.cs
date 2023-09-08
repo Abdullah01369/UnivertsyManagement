@@ -12,6 +12,7 @@ namespace UnivertsyManagement.Areas.SuperAdmin.Controllers
         // GET: SuperAdmin/Exam
         public ActionResult Index()
         {
+            // deneme 
             return View();
         }
     }
