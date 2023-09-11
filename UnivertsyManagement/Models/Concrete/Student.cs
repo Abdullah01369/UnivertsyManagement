@@ -51,5 +51,6 @@ namespace UnivertsyManagement.Models.Concrete
 
         public virtual ICollection<Student_Lesson> Student_Lessons { get; set; } 
         public virtual ICollection<Exam> Exams { get; set; }
+        public virtual ICollection<LessonStuationForGradudation>  LessonStuationForGradudations { get; set; }
     }
 }

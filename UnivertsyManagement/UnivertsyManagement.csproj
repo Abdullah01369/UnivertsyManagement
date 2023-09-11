@@ -334,6 +334,10 @@
     <Compile Include="Migrations\202309051920001_academician_prop.designer.cs">
       <DependentUpon>202309051920001_academician_prop.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202309102158506_mgltable.cs" />
+    <Compile Include="Migrations\202309102158506_mgltable.designer.cs">
+      <DependentUpon>202309102158506_mgltable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Concrete\Academician.cs" />
     <Compile Include="Models\Concrete\AcademicYear.cs" />
@@ -347,6 +351,7 @@
     <Compile Include="Models\Concrete\FlagModel.cs" />
     <Compile Include="Models\Concrete\Lesson.cs" />
     <Compile Include="Models\Concrete\Gender.cs" />
+    <Compile Include="Models\Concrete\LessonStuationForGradudation.cs" />
     <Compile Include="Models\Concrete\Sinif.cs" />
     <Compile Include="Models\Concrete\Student.cs" />
     <Compile Include="Models\Concrete\Student_Lesson.cs" />
@@ -2582,6 +2587,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202309051920001_academician_prop.resx">
       <DependentUpon>202309051920001_academician_prop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309102158506_mgltable.resx">
+      <DependentUpon>202309102158506_mgltable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
