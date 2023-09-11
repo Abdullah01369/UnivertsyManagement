@@ -282,6 +282,7 @@
     <Compile Include="Areas\SuperAdmin\Controllers\AdminController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\ExamController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\LessonController.cs" />
+    <Compile Include="Areas\SuperAdmin\Controllers\StatisticsController.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\StudentController.cs" />
     <Compile Include="Areas\SuperAdmin\Data\AcademicianAddingModel.cs" />
     <Compile Include="Areas\SuperAdmin\Data\AcademicianAddModelView.cs" />
@@ -2501,6 +2502,8 @@
     <Content Include="Areas\SuperAdmin\Views\Academician\AddAcademician.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\Academician\SearchAcademician.cshtml" />
     <Content Include="Areas\SuperAdmin\Views\Academician\AcademicianDetailsPartial.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Statistics\PartialStatisticByAcademicianTitle.cshtml" />
+    <Content Include="Areas\SuperAdmin\Views\Statistics\PartialStatisticPublicationByAcademician.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
