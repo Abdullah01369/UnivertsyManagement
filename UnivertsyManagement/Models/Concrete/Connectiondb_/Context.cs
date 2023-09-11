@@ -27,5 +27,6 @@ namespace UnivertsyManagement.Models.Concrete.Connectiondb
         public DbSet<FlagModel> FlagModels { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Gender> Genders { get; set; }
+        public DbSet<LessonStuationForGradudation> LessonStuationForGradudations { get; set; }
     }
 }
