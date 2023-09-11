@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Identity.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,7 @@ namespace UnivertsyManagement.Controllers
         StudentRepo studentRepo = new StudentRepo();
         AnnouncementsRepo AnnouncementsRepo = new AnnouncementsRepo();
         LessonRepo lessonRepo = new LessonRepo();
+        MessageRepo MessageRepo= new MessageRepo();
         // GET: Student
         public ActionResult Index()
         {
@@ -85,8 +87,12 @@ namespace UnivertsyManagement.Controllers
 
                 throw;
             }
-          
-
+         
+            
+        }
+        public ActionResult MessageInBox()
+        {
+            return View();
         }
     }
 }

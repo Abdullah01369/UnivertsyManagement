@@ -38,5 +38,6 @@ namespace UnivertsyManagement.Models.Concrete
         public virtual ICollection<Lesson> Lessons { get; set; } 
         public virtual ICollection<Student_Lesson> StudentLessons { get; set; } 
         public virtual ICollection<Exam> Exams { get; set; } 
+         
     }
 }

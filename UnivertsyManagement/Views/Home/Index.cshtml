@@ -111,9 +111,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="clear"></div>
                     <div class="login-agileits-top">
                         <form action="#" method="post">
-                            <input type="text" class="name" name="user name" Placeholder="Username" required="" />
-                            <input type="password" class="password" name="Password" Placeholder="Password" required="" />
-                            <input type="submit" value="Login">
+                            <input type="text" class="name" name="AcademicianMail" Placeholder="Mail" required="" id="AcademicianMail" />
+                            <input type="password" class="password" name="AcademicianPassword" Placeholder="Password" required="" id="AcademicianPassword" />
+                            <input onclick="AcademicianLogin()" type="button" value="Giris">
                         </form>
                     </div>
                     <div class="login-agileits-bottom">
@@ -163,9 +163,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                             @*<div class="g-recaptcha" data-sitekey="6Ld0W6AnAAAAAJ3xtY6cdUk-3BqwtYB5tBw0QJ45"></div>*@
                             @*Submiti duzlet*@
-                            <input  type="button"  onclick="LoginStudent()" value="Giriş"/>
-                          
-                           
+                            <input type="button" onclick="LoginStudent()" value="Giriş" />
+
+
                         </form>
                     </div>
                 </div>
@@ -230,15 +230,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     });
 }
     </script>
+    <script>
+
+        function AcademicianLogin() {
+
+    var academician = {
+        AcademicianMail: $("#AcademicianMail").val(),
+        AcademicianPassword: $("#AcademicianPassword").val()
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "@Url.Action("LoginAcademician", "Login")",
+        data: JSON.stringify(academician),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            if (response == "1") {
+                alert("Giriş Başarılı");
+                debugger;
+
+                window.location.href="/Academician/Index"
+            }
+            if (response == "0") {
+                debugger;
+                alert("Şifre ya da mail yanlış");
+
+            }
+        },
+        error: function () {
+            alert("Hata!");
+        }
+    });
+}
+    </script>
 
     @*<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-            async defer>
-    </script>*@
+                async defer>
+        </script>*@
     @*<script type="text/javascript">
-        var onloadCallback = function () {
-            alert("grecaptcha is ready!");
-        };
-    </script>*@
+            var onloadCallback = function () {
+                alert("grecaptcha is ready!");
+            };
+        </script>*@
 </body>
 <!-- //body ends -->
 </html>

@@ -9,5 +9,7 @@ namespace UnivertsyManagement.Models
     {
         public string Student_No { get; set; }
         public string Password { get; set; }
+
+
     }
 }
