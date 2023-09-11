@@ -18,7 +18,7 @@ namespace UnivertsyManagement.Controllers
     {
         StudentRepo StudentRepo = new StudentRepo();
         
-        private IAuthenticationManager AuthenticationManager
+        private IAuthenticationManager AuthenticationManager // 
         {
             get { return HttpContext.GetOwinContext().Authentication; }
         }
