@@ -33,10 +33,6 @@
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
-         
-
-
-
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Messages Dropdown Menu -->
@@ -136,7 +132,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="/Student/Index" class="brand-link">
-                <img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Erciyes_University_logo.svg/512px-Erciyes_University_logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Erciyes_University_logo.svg/512px-Erciyes_University_logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                      style="opacity: .8">
                 <span class="brand-text font-weight-light">OBSIS</span>
             </a>
@@ -144,7 +140,7 @@
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
-                @Html.Action("LayoutPartial", "Student")
+                @Html.Action("LayoutPartial", "Academician")
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
@@ -152,7 +148,7 @@
 
 
                         <li class="nav-item">
-                            <a href="/Student/Index" class="nav-link">
+                            <a href="/Academician/Index" class="nav-link">
                                 <i class="nav-icon fas fa-home"></i>
                                 <p>
                                     Anasayfa
@@ -163,7 +159,7 @@
                             <a href="/SelectionLessons/Index" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
-                                    Ders Kayıt
+                                    Derslerim
                                 </p>
                             </a>
                         </li>
@@ -171,7 +167,7 @@
                             <a href="/Exam/LessonList" class="nav-link">
                                 <i class="nav-icon fas fa-pen"></i>
                                 <p>
-                                    Not Sorgu
+                                    Not Gir
                                 </p>
                             </a>
                         </li>
@@ -179,7 +175,7 @@
                             <a href="pages/widgets.html" class="nav-link">
                                 <i class="nav-icon fas fa-percent"></i>
                                 <p>
-                                    Yüzde On Listesi
+                                    Mesajlarım
                                 </p>
                             </a>
                         </li>
@@ -187,7 +183,7 @@
                             <a href="pages/widgets.html" class="nav-link">
                                 <i class="nav-icon fas fa-sticky-note"></i>
                                 <p>
-                                    Staj
+                                    Ders Programım
                                 </p>
                             </a>
                         </li>
@@ -195,7 +191,7 @@
                             <a href="pages/widgets.html" class="nav-link">
                                 <i class="nav-icon fas fa-school"></i>
                                 <p>
-                                    Yaz Okulu Başvuru
+                                    Projelerim
                                 </p>
                             </a>
                         </li>
@@ -203,16 +199,7 @@
                             <a href="pages/widgets.html" class="nav-link">
                                 <i class="nav-icon fas fa-university"></i>
                                 <p>
-                                    Mezuniyet
-                                </p>
-                            </a>
-                        </li>
-                       
-                        <li class="nav-item">
-                            <a href="/Student/MessageInBox" class="nav-link">
-                                <i class="nav-icon fas fa-university"></i>
-                                <p>
-                                    Mesajlar
+                                    Avesis Hesabım
                                 </p>
                             </a>
                         </li>
@@ -220,23 +207,16 @@
                             <a href="pages/widgets.html" class="nav-link">
                                 <i class="nav-icon fas fa-paperclip"></i>
                                 <p>
-                                    Belge
+                                    Belgelerim
                                 </p>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
-                                <i class="nav-icon fas fa-hand-paper"></i>
+                            <a href="/Student/EditStudent" class="nav-link">
+                                <i class="nav-icon fas fa-edit"></i>
                                 <p>
-                                    Ders Durum
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
-                                <i class="nav-icon fas fa-bookmark"></i>
-                                <p>
-                                    Dosyalar
+                                    Ayarlar
                                 </p>
                             </a>
                         </li>
@@ -244,7 +224,7 @@
                             <a href="/Student/EditStudent" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
-                                    Ayarlar
+                                    Çıkış
                                 </p>
                             </a>
                         </li>

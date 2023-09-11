@@ -5,6 +5,7 @@ using System.Web;
 using UnivertsyManagement.Models;
 using UnivertsyManagement.Models.Concrete;
 using UnivertsyManagement.Models.Concrete.Connectiondb;
+using UnivertsyManagement.Models.ViewModels;
 
 namespace UnivertsyManagement.Repository
 {
@@ -104,6 +105,11 @@ namespace UnivertsyManagement.Repository
 
                 return "1";
             }
+        }
+
+        internal object AcademicianLogin(AcademicianLoginViewModel academician)
+        {
+            throw new NotImplementedException();
         }
     }
 }
